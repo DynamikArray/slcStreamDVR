@@ -3,7 +3,7 @@ const app = express()
 const port = 3000
 
 app.get('/', (req, res) => {
-  console.log("request recieved on default route -- " + new Date());
+  console.log("request recieved on default route : " + new Date());
   res.send('Hello World!')
 })
 

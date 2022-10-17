@@ -1,6 +1,16 @@
 version: '3'
-
 services:
+  slc-api:    
+    build: 
+      context: .
+    image: dynamikarray/slcstreamdvr:latest
+    networks:
+      - slc-dvr
+    depends_on:
+      - mongo   
+    ports:
+      - "3000:3000"
+
   ## MONDO DB ##
   mongo:
     container_name: mongodb

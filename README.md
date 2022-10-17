@@ -8,4 +8,4 @@
 
 #### Run Production Stack using docker-compose.prod.yml
 
-`docker-compose -f docker-compose -f docker-compose.prod.yml up -d`
+`docker-compose up -d`
