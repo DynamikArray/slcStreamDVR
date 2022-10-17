@@ -1,0 +1,19 @@
+{
+  "name": "slc-dvr-api",
+  "version": "0.0.1",
+  "description": "api to support slc stream dvr",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon -L server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brian Ridsdale",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

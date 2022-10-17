@@ -1,0 +1,14 @@
+version: '3'
+services:
+  slc-api:    
+    build: 
+      context: .
+    image: dynamikarray/slcstreamdvr:latest
+    networks:
+      - slc-dvr
+    ports:
+      - "3000:3000"
+
+networks:
+  slc-dvr:
+    driver: bridge

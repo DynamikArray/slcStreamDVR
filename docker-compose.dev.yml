@@ -1,0 +1,14 @@
+version: '3'
+services:
+  slc-api:
+    build: ./api
+    command: npm run dev
+    volumes:
+      - type: bind
+        source: ./api
+        target: /slcApps/src/api
+    working_dir: /slcApps/src/api      
+    networks:
+      - slc-dvr
+    ports:
+      - "3000:3000"    
