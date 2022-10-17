@@ -1,5 +1,18 @@
 version: '3'
 
+services:
+  ## MONDO DB ##
+  mongo:
+    container_name: mongodb
+    restart: always
+    image: mongo    
+    volumes:
+      - ~/mongo/data:/slcApps/data/db
+    ports:
+      - '27017:27017'
+    networks:
+      - slc-dvr
+
 networks:
   slc-dvr:
     driver: bridge
