@@ -6,20 +6,34 @@ services:
     image: dynamikarray/slcstreamdvr:latest
     networks:
       - slc-dvr
-    depends_on:
-      - mongo   
     ports:
       - "3000:3000"
+    links:
+      - mongo
+      - redis
+    depends_on:
+      - mongo   
+      - redis    
+    
 
   ## MONDO DB ##
   mongo:
-    container_name: mongodb
+    container_name: mongo
     restart: always
     image: mongo    
     volumes:
       - ~/mongo/data:/slcApps/data/db
     ports:
-      - '27017:27017'
+      - "27017:27017"
+    networks:
+      - slc-dvr
+
+  ## REDIS FOR BULL QUEUE ##
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - "6379:6379"
     networks:
       - slc-dvr
 
