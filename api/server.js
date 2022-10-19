@@ -1,28 +1,28 @@
 require("dotenv").config();
-const path = require("path");
+const { logger, LEVELS } = require("./services/loggerService");
+const morgan = require("morgan");
+
 const express = require("express");
+const apiServer = express();
+apiServer.use(morgan("common"));
 
-const app = express();
+const { connectDb } = require("./services/mongooseService");
 
-const { databaseConnection } = require("./services/mongooseService");
+const router = require("./routes/router.js");
+apiServer.use(router);
 
 const start = async () => {
-  try {
-    await databaseConnection();
-    console.log("Connected to Mongo");
+  //connect to Mongo
+  await connectDb();
 
-    app.get("/", (req, res) => {
-      console.log("request recieved on default route : " + new Date());
-      res.send("Hello World!");
-    });
-
-    app.listen(process.env.APP_PORT, () => {
-      console.log(`Example app listening on port ${process.env.APP_PORT}`);
-    });
-  } catch (error) {
-    //TODO safe Stringify this with a try catch wrapper
-    console.error("Database Connection Error :", error);
-  }
+  //tell app to listen
+  apiServer.listen(process.env.APP_PORT, () => {
+    logger.log(
+      LEVELS.INFO,
+      `Server | App listening on port  ${process.env.APP_PORT}`
+    );
+  });
 };
 
+//run start
 start();
