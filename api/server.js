@@ -11,9 +11,15 @@ const { connectDb } = require("./services/mongooseService");
 const router = require("./routes/router.js");
 apiServer.use(router);
 
+require("./queues/queues");
+const { recordingsQueueWorker } = require("./queues/worker");
+
 const start = async () => {
   //connect to Mongo
   await connectDb();
+
+  //start the queues
+  recordingsQueueWorker.run();
 
   //tell app to listen
   apiServer.listen(process.env.APP_PORT, () => {
