@@ -18,3 +18,22 @@ services:
     depends_on:
       - mongo   
       - redis    
+
+  slc-worker:    
+    build: ./worker
+    command: npm run dev
+    volumes:
+      - type: bind
+        source: ./worker
+        target: /slcApps/src/worker
+    working_dir: /slcApps/src/worker
+    networks:
+      - slc-dvr
+    links:
+      - mongo
+      - redis
+      - slc-api
+    depends_on:
+      - mongo   
+      - redis
+      - slc-api  

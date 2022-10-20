@@ -11,22 +11,19 @@ const { connectDb } = require("./services/mongooseService");
 const router = require("./routes/router.js");
 apiServer.use(router);
 
-require("./queues/queues");
-const { recordingsQueueWorker } = require("./queues/worker");
+//Bull Dashboard
+const { serverAdapter } = require("./queues/dashboard");
 
 const start = async () => {
   //connect to Mongo
   await connectDb();
 
-  //start the queues
-  recordingsQueueWorker.run();
+  //Bull Dashboard
+  apiServer.use(process.env.QUEUES_ADMIN_UI, serverAdapter.getRouter());
 
   //tell app to listen
   apiServer.listen(process.env.APP_PORT, () => {
-    logger.log(
-      LEVELS.INFO,
-      `Server | App listening on port  ${process.env.APP_PORT}`
-    );
+    logger.log(LEVELS.INFO, `Server | App listening on port  ${process.env.APP_PORT}`);
   });
 };
 
