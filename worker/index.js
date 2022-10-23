@@ -5,7 +5,7 @@ const path = require("path");
 const { logger, LEVELS } = require("./services/loggerService");
 const { RECORDINGS_QUEUE, connection } = require("./queues/queues.constants");
 
-const processorFile = path.join(__dirname, "/jobs/recordingProcessor.js");
+const processorFile = path.join(__dirname, "/jobs/recordStream.js");
 
 function start() {
   try {
