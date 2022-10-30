@@ -33,7 +33,7 @@ const RecordingProcessor = {
         //Do stuff and things
         logger.log(LEVELS.INFO, "RecordingProcessor | jobControl | Interval Heartbeat");
 
-        if (intervalCount == 2) {
+        if (intervalCount == 5) {
           RecordingProcessor.endRecording();
           resolve("Some STats and Stuff?");
         }
@@ -49,6 +49,7 @@ const RecordingProcessor = {
         height: 720,
       },
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      ignoreDefaultArgs: ["--mute-audio"],
       executablePath: "/usr/bin/chromium",
     });
   },
@@ -73,9 +74,8 @@ const RecordingProcessor = {
   startRecording: async function () {
     logger.log(LEVELS.INFO, "RecordingProcessor | startRecording | getStream");
     RecordingProcessor.stream = await getStream(RecordingProcessor.page, {
-      audtio: true,
+      audio: true,
       video: true,
-      frameSize: 10000,
     });
     RecordingProcessor.ffmpeg = exec(`ffmpeg -y -i - testVideo.mp4`);
 
