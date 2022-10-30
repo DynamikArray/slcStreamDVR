@@ -19,6 +19,10 @@ services:
     build: 
       context: .
     image: dynamikarray/slcstreamdvr-worker:latest
+    volumes:
+      - C:\Development\slcStreamDVR\worker:/slcApps/src/worker
+    environment:
+      - DISPLAY=${DISPLAY}        
     networks:
       - slc-dvr
     links:

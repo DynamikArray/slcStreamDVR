@@ -3,7 +3,7 @@ const { RecordingProcessor } = require("./RecordingProcessor.js");
 
 module.exports = async (job) => {
   try {
-    const streamUrl = "https://www.whatnot.com/live/060eb331-5eed-4d40-bc97-441f866dcaf2";
+    const streamUrl = "https://www.whatnot.com/live/3318494c-176c-44fa-a1c8-8fc989cd5213";
     await RecordingProcessor.init(streamUrl);
     const results = await RecordingProcessor.jobControl();
     logger.log(LEVELS.INFO, `recordingProcess | job | Completed | Results : ${results}`);

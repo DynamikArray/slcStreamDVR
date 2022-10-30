@@ -19,14 +19,17 @@ services:
       - mongo   
       - redis    
 
-  slc-worker:    
-    build: ./worker
-    command: npm run dev
+  slc-worker:
+    build: 
+      context: ./worker
+      dockerfile: Dockerfile.dev
     volumes:
       - type: bind
         source: ./worker
         target: /slcApps/src/worker
     working_dir: /slcApps/src/worker
+    environment:
+      - DISPLAY=${DISPLAY}    
     networks:
       - slc-dvr
     links:

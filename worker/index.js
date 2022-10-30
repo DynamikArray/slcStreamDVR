@@ -21,7 +21,7 @@ function start() {
       logger.log(LEVELS.INFO, `Worker | Completed: ${name} | Id: ${id} | optionalResponse: ${returnvalue}`);
     });
 
-    logger.log(LEVELS.INFO, "Worker | index | Workers Started.");
+    logger.log(LEVELS.INFO, "Worker | index | Workers started.");
   } catch (error) {
     logger.log(LEVELS.ERROR, `Worker | index | ${error.message}`);
   }

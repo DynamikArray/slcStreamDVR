@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "DEBUG=* nodemon -L index.js",
+    "dev": "DEBUG=debug nodemon -L index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -14,7 +14,7 @@
     "bullmq": "^2.3.2",
     "dotenv": "^16.0.3",
     "puppeteer": "^19.0.0",
-    "puppeteer-screen-recorder": "^2.1.2",
+    "puppeteer-stream": "^2.1.1",
     "winston": "^3.8.2"
   },
   "devDependencies": {
