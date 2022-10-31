@@ -9,3 +9,9 @@
 #### Run Production Stack using docker-compose.prod.yml
 
 `docker-compose up -d`
+
+# Api - Express api for handling request
+
+# Recordings - Saved recordings location when using `docker-compose.dev.yml`
+
+# Worker - Node / BullMQ worker instance for processing jobs and recording streams
